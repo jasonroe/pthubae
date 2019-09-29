@@ -1,0 +1,109 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>PT Hub - Index</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body class="bg-light">
+
+    <div class="container">
+      <div class="py-5 text-center">
+        <h2>PT Hub</h2>
+        <p class="lead">Example leaderboard built on js aepp-sdk.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <form>
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Name">
+              </div>
+              <div class="col">
+                <input type="email" class="form-control" placeholder="Email">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Wallet">
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-primary">Add</button>
+              </div>
+            </div>
+          </form>
+          <br />
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Total Payouts</th>
+                <th scope="col">Balance</th>
+              </tr>
+            </thead>
+            <tbody id="partnerTableBody">
+
+              <tr>
+                <th colspan="4" scope="row">To start a leader baord please add your first partner.</th>
+              </tr>
+
+            </tbody>
+          </table>
+          <hr />
+        </div>
+      </div>
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+      </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@aeternity/aepp-sdk/dist/aepp-sdk.browser-script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/jquery-handlebars-1.1.4.min.js"></script>
+
+
+    <script type="text/javascript">
+
+    $(function() {
+      Ae.Wallet({
+        url: 'https://sdk-testnet.aepps.com'
+      }).then(aeInstance => {
+        aeInstance.height().then(height => {
+          console.log("url: "+aeInstance.url);
+          console.log("Current Block Height:" + height);
+        })
+      })
+
+      $(document).on('click', ".pay", function() {
+          alert("a");
+      });
+      $(document).on('click', ".inc", function() {
+          alert("b");
+      });
+
+      var partnerArray = [
+        {"wallet": "123","name": "Jason","total":18, "balance":1},
+        {"wallet": "345","name": "Owem","total":27, "balance":2},
+        {"wallet": "567","name": "Nas","total":14, "balance":3}
+      ];
+
+      Array = partnerArray.sort(function(a,b){return b.total-a.total});
+
+      $.handlebars({
+          templatePath: 'js/templates',
+          templateExtension: 'hbs'
+      });
+
+      $('#partnerTableBody').render("table",partnerArray);
+
+      });
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{{#partnerArray}}
+  <tr>
+    <th scope="row">{{index}}</th>
+    <td><a href="mailto:{{email}}" data-toggle="tooltip" title="Some tooltip text!">{{name}}</a></td>
+    <td>{{total}}</td>
+    <td><div class="input-group">
+
+        <input type="text" class="form-control" placeholder="Balance" aria-label="Balance" aria-describedby="basic-addon2" value="{{balance}}"  id="{{wallet}}">
+
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary inc" type="button" var="{{wallet}}">+</button>
+        </div>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary pay" type="button" var="{{wallet}}">Pay</button>
+          </div>
+      </div>
+
+    </td>
+  </tr>
+{{/partnerArray}}
